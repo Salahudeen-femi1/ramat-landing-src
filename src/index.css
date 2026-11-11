@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: #fdfbf7;
+  color: #1b241a;
+  font-family: Poppins, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@layer components {
+  /* One gutter for every band. Honours phone side insets. */
+  .wrap {
+    @apply mx-auto w-full max-w-[1240px];
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+  .eyebrow {
+    @apply font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-leaf;
+  }
+  .h-display {
+    @apply font-display font-bold tracking-[-0.035em] text-ink [text-wrap:balance];
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+  }
+  /* Perforated ticket: notches cut at --notch from the top. */
+  .ticket {
+    --notch: 64%;
+    -webkit-mask:
+      radial-gradient(circle 10px at 0 var(--notch), #0000 97%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 10px at 100% var(--notch), #0000 97%, #000) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle 10px at 0 var(--notch), #0000 97%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 10px at 100% var(--notch), #0000 97%, #000) right / 51% 100% no-repeat;
+  }
+  .dots-kraft {
+    background-image: radial-gradient(#d9b98a66 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
